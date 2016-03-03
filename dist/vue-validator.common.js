@@ -203,7 +203,6 @@ function required(val) {
     } else {
       return false;
     }
-    return val.length > 0;
   } else if (typeof val === 'number' || typeof val === 'function') {
     return true;
   } else if (typeof val === 'boolean') {
@@ -376,7 +375,6 @@ function Asset (Vue) {
 }
 
 function Override (Vue) {
-
   // override _init
   var init = Vue.prototype._init;
   Vue.prototype._init = function (options) {
@@ -395,7 +393,6 @@ function Override (Vue) {
 }
 
 function Validate (Vue) {
-
   var _ = Vue.util;
   var vIf = Vue.directive('if');
   var FragmentFactory = Vue.FragmentFactory;
@@ -737,7 +734,7 @@ var BaseValidation = function () {
         }
 
         if (validator) {
-          var ret = validator.call(_this2._vm, _this2._getValue(_this2._el), descriptor.arg);
+          var ret = validator.call(_this2, _this2._getValue(_this2._el), descriptor.arg);
           if (!ret) {
             valid = false;
             if (msg) {
@@ -1889,7 +1886,6 @@ function Validator (Vue) {
 }
 
 function ValidatorError (Vue) {
-
   /**
    * ValidatorError component
    */
@@ -1927,7 +1923,6 @@ function ValidatorError (Vue) {
 }
 
 function Errors (Vue) {
-
   var _ = Vue.util;
   var error = ValidatorError(Vue); // import ValidatorError component
 
@@ -1983,7 +1978,7 @@ function Errors (Vue) {
       }
     },
 
-    template: '<template v-for="error in errors">' + '<component :is="component" :partial="partial" :field="error.field" :validator="error.validator" :message="error.message"></component>' + '</template>',
+    template: '<template v-for="error in errors">' + '<component :is="component" :partial="partial" :field="error.field" :validator="error.validator" :message="error.message">' + '</component>' + '</template>',
 
     components: {}
   };

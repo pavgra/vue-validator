@@ -207,7 +207,6 @@
       } else {
         return false;
       }
-      return val.length > 0;
     } else if (typeof val === 'number' || typeof val === 'function') {
       return true;
     } else if (typeof val === 'boolean') {
@@ -380,7 +379,6 @@ var validators = Object.freeze({
   }
 
   function Override (Vue) {
-
     // override _init
     var init = Vue.prototype._init;
     Vue.prototype._init = function (options) {
@@ -399,7 +397,6 @@ var validators = Object.freeze({
   }
 
   function Validate (Vue) {
-
     var _ = Vue.util;
     var vIf = Vue.directive('if');
     var FragmentFactory = Vue.FragmentFactory;
@@ -741,7 +738,7 @@ var validators = Object.freeze({
           }
 
           if (validator) {
-            var ret = validator.call(_this2._vm, _this2._getValue(_this2._el), descriptor.arg);
+            var ret = validator.call(_this2, _this2._getValue(_this2._el), descriptor.arg);
             if (!ret) {
               valid = false;
               if (msg) {
@@ -1893,7 +1890,6 @@ var validators = Object.freeze({
   }
 
   function ValidatorError (Vue) {
-
     /**
      * ValidatorError component
      */
@@ -1931,7 +1927,6 @@ var validators = Object.freeze({
   }
 
   function Errors (Vue) {
-
     var _ = Vue.util;
     var error = ValidatorError(Vue); // import ValidatorError component
 
@@ -1987,7 +1982,7 @@ var validators = Object.freeze({
         }
       },
 
-      template: '<template v-for="error in errors">' + '<component :is="component" :partial="partial" :field="error.field" :validator="error.validator" :message="error.message"></component>' + '</template>',
+      template: '<template v-for="error in errors">' + '<component :is="component" :partial="partial" :field="error.field" :validator="error.validator" :message="error.message">' + '</component>' + '</template>',
 
       components: {}
     };

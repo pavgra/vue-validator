@@ -154,7 +154,7 @@ export default class BaseValidation {
       }
 
       if (validator) {
-        let ret = validator.call(this._vm, this._getValue(this._el), descriptor.arg)
+        let ret = validator.call(this, this._getValue(this._el), descriptor.arg)
         if (!ret) {
           valid = false
           if (msg) {
